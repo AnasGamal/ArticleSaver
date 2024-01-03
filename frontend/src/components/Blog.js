@@ -18,6 +18,7 @@ const Blog = ({ blogs }) => {
     const navigate = useNavigate();
     if (!blog) {
         navigate(`/`);
+        return
     }
 
     const dispatch = useDispatch();
@@ -79,12 +80,12 @@ const Blog = ({ blogs }) => {
   
   
     return (
-        <div key={blog.id}>
-            <h2>{blog.title}</h2>
-            <p><Link to={blog.url}>{blog.url}</Link></p>
-            <p>{blog.likes} likes <Button variant="contained" color="primary" id="like-button" onClick={() => handleLikeClick(blog)}>like</Button></p>
-            <p>added by {blog.user.username}</p>
-            {user.username === blog.user.username && <Button variant="contained" color="primary" id="remove-button" onClick={() => handleRemoveClick(blog)}>remove</Button>}
+        <div key={blog?.id}>
+            <h2>{blog?.title}</h2>
+            <p><Link to={blog?.url}>{blog.url}</Link></p>
+            <p>{blog?.likes} likes <Button variant="contained" color="primary" id="like-button" onClick={() => handleLikeClick(blog)}>like</Button></p>
+            <p>added by {blog?.user?.username}</p>
+            {user?.username === blog?.user?.username && <Button variant="contained" color="primary" id="remove-button" onClick={() => handleRemoveClick(blog)}>remove</Button>}
 
             <h3>comments</h3>
             <form onSubmit={handleAddComment}>
